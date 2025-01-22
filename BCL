@@ -1,5 +1,5 @@
 (function() {
-    const scriptUrl = "https://raw.githubusercontent.com/username/repository/branch/script.js";
+    const scriptUrl = "https://raw.githubusercontent.com/Blooket-Council/Blooket-Cheats/refs/heads/main/cheats/gui.min.js";
 
     GM_xmlhttpRequest({
         method: "GET",
