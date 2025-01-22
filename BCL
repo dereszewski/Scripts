@@ -1,0 +1,16 @@
+(function() {
+    const scriptUrl = "https://raw.githubusercontent.com/username/repository/branch/script.js";
+
+    GM_xmlhttpRequest({
+        method: "GET",
+        url: scriptUrl,
+        onload: function(response) {
+            const script = document.createElement('script');
+            script.textContent = response.responseText;
+            document.head.appendChild(script);
+        },
+        onerror: function() {
+            console.error(`Failed to load script from ${scriptUrl}`);
+        }
+    });
+})();
