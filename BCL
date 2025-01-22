@@ -1,16 +1,43 @@
-(function() {
-    const scriptUrl = "https://raw.githubusercontent.com/Blooket-Council/Blooket-Cheats/refs/heads/main/cheats/gui.min.js";
+// ==UserScript==
+// @name         Blooket Cheats Injector
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Inject Blooket Cheats from GitHub if URL matches criteria PLEASE FIND A TUTORIAL FOR CSP BYPASS
+// @author       Your Name
+// @match        *://*.blooket.com/*
+// @match        *://example.blooket.com/*
+// @grant        none
+// ==/UserScript==
 
-    GM_xmlhttpRequest({
-        method: "GET",
-        url: scriptUrl,
-        onload: function(response) {
-            const script = document.createElement('script');
-            script.textContent = response.responseText;
-            document.head.appendChild(script);
-        },
-        onerror: function() {
-            console.error(`Failed to load script from ${scriptUrl}`);
-        }
-    });
+(function() {
+    'use strict';
+
+    // Define the URL for the cheat script
+    const cheatScriptUrl = 'https://raw.githubusercontent.com/Blooket-Council/Blooket-Cheats/refs/heads/main/cheats/gui.min.js';
+
+    // Check if the current hostname or path does not match exactly "blooket.com"
+    if (window.location.hostname !== 'blooket.com' || window.location.pathname !== '/') {
+        console.log('Injecting cheat script...');
+
+        // Fetch the cheat script from GitHub
+        fetch(cheatScriptUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch cheat script: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(script => {
+                // Inject the script into the page
+                const scriptElement = document.createElement('script');
+                scriptElement.textContent = script;
+                document.body.appendChild(scriptElement);
+                console.log('Cheat script injected successfully.');
+            })
+            .catch(error => {
+                alert('Error injecting cheat script DISABLE CSP');
+            });
+    } else {
+        console.log('No injection needed for this URL.');
+    }
 })();
