@@ -1,0 +1,10 @@
+{
+  opcode: 'lovingPM',
+  text: 'i love pm',
+  blockType: Scratch.BlockType.COMMAND,
+  branches: [
+    {},
+    {accepts: 'switchCase'}
+  ],
+  notchAccepts: 'switchCase'
+}
